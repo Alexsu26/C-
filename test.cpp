@@ -1,13 +1,6 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define maxn 85
+#include <iostream>
 int main()
 {
-    
-    char name[78];
-    char x[20];
-    scanf("%s",x);
-    sprintf(name,"x = %s\n",x);
-    printf(name);
+    std::cout<<"Hello World"<<std::endl;
     return 0;
 }
