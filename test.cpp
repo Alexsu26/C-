@@ -1,87 +1,33 @@
-#define LOCAL
-#include <stdio.h>
-#include <string.h>
+#include <bits.\stdc++.h>
+using namespace std;
 
-int check(int x, int y, int size);
+void fill_random_int(vector<int>& v,int cnt)
+{
+    v.clear();
+    for(int i=0;i<cnt;i++)
+    {
+        v.push_back(rand());
+    }
+}
 
-int H[10][10], V[10][10];
+void test_sort(vector<int> v)
+{
+    sort(v.begin(),v.end());
+    for(int i=0;i<v.size()-1;i++)
+    {
+        assert(v[i] <= v[i+1]);
+    }
+}
 
 int main(int argc, char const *argv[])
 {
-#ifdef LOCAL
-    freopen("test.in", "r", stdin);
-    freopen("test.out", "w", stdout);
-#endif
-    int n;
-    int count = 0;
-    while (scanf("%d", &n) == 1)
+    srand(time(NULL));
+    vector<int> v;
+    fill_random_int(v,100000);
+    test_sort(v);
+    for(int i=0; i<v.size()-1; i++)
     {
-        if (count)
-            printf("\n**********************************\n\n");
-        int num;
-        scanf("%d", &num);
-        memset(H, 0, sizeof(H));
-        memset(V, 0, sizeof(V));
-        int cnt[10];
-        memset(cnt, 0, sizeof(cnt));
-        int flag = 0;
-        while (num--)
-        {
-            char x;
-            int h, v;
-            getchar();
-            scanf("%c%d%d", &x, &h, &v);
-            if (x == 'H')
-                H[h][v] = 1;
-            else
-                V[v][h] = 1;
-        }
-        for (int i = 1; i < n; i++)
-            for (int j = 1; j < n; j++)
-            {
-                for (int k = 1; k <= n; k++)
-                {
-                    if (check(i, j, k))
-                    {
-                        cnt[k]++;
-                        flag = 1;
-                    }
-                }
-            }
-        printf("Problem #%d\n\n", ++count);
-        if (flag)
-        {
-            for (int i = 1; i <= n; i++)
-            {
-                if (cnt[i] > 0)
-                    printf("%d square (s) of size %d\n", cnt[i], i);
-            }
-            // printf("\n");
-        }
-        else
-            printf("No completed squares can be found.\n");
+        cout<<v[i]<<"\n";
     }
     return 0;
-}
-int check(int x, int y, int size)
-{
-    int flagx = 0, flagy = 0, i;
-    for (i = y; i < y + size; i++)
-    {
-        if (H[x][i] == 0 || H[x + size][i] == 0)
-            break;
-    }
-    if (i == (y + size))
-        flagx = 1;
-    for (i = x; i < x + size; i++)
-    {
-        if (V[i][y] == 0 || V[i][y + size] == 0)
-            break;
-    }
-    if (i == (x + size))
-        flagy = 1;
-    if (flagx && flagy)
-        return 1;
-    else
-        return 0;
 }
