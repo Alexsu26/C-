@@ -1,11 +1,17 @@
 #include <bits.\stdc++.h>
 using namespace std;
+
+int sumx(int x)
+{
+    if( x == 1) 
+        return 1;
+    else
+        return x * sumx(--x);
+}
+
 int main()
 {
-    double n;
-    cin>>n;
-    int m = floor(n+0.5);
-    int k = n + 0.5;
-    printf("floor()=%d, (int)=%d\n",m,k);
+    int x = 5;
+    cout<<sumx(x)<<endl;
     return 0;
 }

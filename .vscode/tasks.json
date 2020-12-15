@@ -1,18 +1,16 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
             "type": "shell",
-            "label": "task g++",
-            "command": "C:\\MinGW\\bin\\g++.exe",
+            "label": "compile",
+            "command": "g++",
             "args": [
                 "-g",
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
             "problemMatcher": [
                 "$gcc"
             ],
@@ -21,6 +19,5 @@
                 "isDefault": true
             }
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
