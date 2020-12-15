@@ -11,8 +11,6 @@ int sumx(int x)
 
 int main()
 {
-    int x = 5;
-    
-    cout<<x*--x<<endl;
+    printf("%d\n",3>5?3:5);
     return 0;
 }
