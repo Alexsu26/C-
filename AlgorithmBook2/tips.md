@@ -59,3 +59,4 @@
 *   输入输出重定向可通过
     1.  `freopen("name.xxx","r",stdin)`定义输入，此后的标准输入都从文件读取；`freopen("name.xxx","w",stdout)`定义输出，此后的标准输出都输出至文件,应写在`main`函数中
 
+

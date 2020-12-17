@@ -1,16 +1,20 @@
-#include <bits.\stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
-
-int sumx(int x)
-{
-    if( x == 1) 
-        return 1;
-    else
-        return x * sumx(x-1);
-}
 
 int main()
 {
-    printf("%d\n",3>5?3:5);
+    int i;
+    vector <int> vec;
+    cout<<"vec size = " << vec.size() <<endl;
+
+    for(i=0; i<5; i++)
+        vec.push_back(i);
+    
+    cout<<"after push vec size  " << vec.size() <<endl;
+
+    for(i=0; i<5; i++)
+        cout<< "vec[" << i << "] = " << vec[i] <<endl;
+    
     return 0;
 }
