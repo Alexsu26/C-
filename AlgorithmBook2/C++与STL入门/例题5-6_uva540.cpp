@@ -11,7 +11,7 @@ int main()
     // freopen("test.in", "r", stdin);
     // freopen("test.out", "w", stdout);
     int t, flag = 0;
-    while (scanf("%d",&t)==1 && t)
+    while (scanf("%d", &t) == 1 && t)
     {
         cout << "Scenario #" << ++flag << endl;
 
@@ -30,7 +30,7 @@ int main()
 
         queue<int> q, q2[maxn];
         //模拟命令
-        for(;;)
+        for (;;)
         {
             string s;
             int x;
