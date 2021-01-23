@@ -59,4 +59,11 @@
 *   输入输出重定向可通过
     1.  `freopen("name.xxx","r",stdin)`定义输入，此后的标准输入都从文件读取；`freopen("name.xxx","w",stdout)`定义输出，此后的标准输出都输出至文件,应写在`main`函数中
 
+*   可通过`pair<int,int>`的形式关联两个类型的变量，并将关联后的变量以整体形式放入`map`等数据结构中；例如下
+    ```C++
+    typedef pair<int,int> P;
+    map<P,int>ans;
+    //来自STL入门中的例题5-9
+    ```
+    就可将map当中的P映射到一个单独的整型中
 

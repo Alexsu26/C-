@@ -15,6 +15,7 @@
         "fstream": "cpp",
         "limits": "cpp",
         "sstream": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "tuple": "cpp"
     }
 }

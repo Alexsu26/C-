@@ -1,7 +1,6 @@
 //线性方法，复杂度为O（N）
 #include <bits./stdc++.h>
 using namespace std;
-
 int MaxSubseqSum4(vector<int> A, int N)
 {
     int Thissum = 0, Maxsum = 0;
