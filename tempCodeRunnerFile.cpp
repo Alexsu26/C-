@@ -1,2 +1,2 @@
-freopen("test.in","r",stdin);
-    
+eopen("test.in","r",stdin);
+    fr

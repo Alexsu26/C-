@@ -1,4 +1,4 @@
-NO
-2 3
-2 3
-YES
+start: integer; // begins here
+stop:  integer; // ends   here
+s:     string;
+c:     char;    // temp

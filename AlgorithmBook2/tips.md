@@ -67,3 +67,24 @@
     ```
     就可将map当中的P映射到一个单独的整型中
 
+*   函数中若存在循环，应注意循环变量与函数的参数不能重名，否则易出现数组越界的问题；如习题5-1：
+    ```C++
+    void printnull(int i,int j,int long_str)
+    {
+        cout << code[i][j];
+        for(int i=0; i<long_str - code[i][j] + 1; i++)
+            cout << " ";
+    }
+    ```
+    由于函数的参数与循环变量i重名，使用时数组越界；
+
+*   对输出有要求的题目，如对二维数组输出时，除最后一行外的其他行要求换行，可单独处理最后一行；
+    ```C++
+    for(int i=0; i<rows; i++)
+    {
+        int j;
+        for(j=0; j<cols - 1; j++)
+            cout << num[i][j] << "\n";
+        cout << num[i][j];
+    }
+    ```
