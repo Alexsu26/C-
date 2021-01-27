@@ -88,3 +88,19 @@
         cout << num[i][j];
     }
     ```
+
+*   对于同一行输出有要求，如：
+Discarded cards: 1, 3, 5, 7, 4, 2
+的情况，可以用flag标志第一次，然后输出后续；
+    ```C++
+    cout << "Discarded cards:";
+    bool flag = true;
+    if(flag)
+    {
+        cout << " ";
+        flag = false;
+    }
+    else
+        cout << ", ";
+    ```
+    同上一个点一样，可以将最后一个数的输出单独处理；
