@@ -104,3 +104,10 @@ Discarded cards: 1, 3, 5, 7, 4, 2
         cout << ", ";
     ```
     同上一个点一样，可以将最后一个数的输出单独处理；
+
+*   对于字符串string类型，可切片运算，指令如下：
+    ```C++
+    string str = "hello";
+    string str1 = str.substr(0,2);  //两个参数，则是[0,2),即str1 = "he"
+    string str2 = str.substr(2);    //一个参数，即是(2:],即str2 = "llo"
+    ```

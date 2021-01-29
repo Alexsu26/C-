@@ -1,31 +1,29 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <string>
+#include <set>
 using namespace std;
 
 int main()
 {
     freopen("test.in","r",stdin);
     freopen("test.out","w",stdout);
-    int num;
-    while((cin >> num) && num)
+    set<string>dict;
+    string s;
+    while(cin >> s)
     {
-        int A,B;
-        vector<int>sa,sb;
-        while(num--)
+        dict.insert(s);
+    }
+    for(set<string>::iterator it = dict.begin(); it != dict.end(); it++)
+    {
+        string str = *it;
+        for(int i=1; i != str.size(); i++)
         {
-            cin >> A >> B;
-            sa.push_back(A);
-            sb.push_back(B);
+            if( dict.count(str.substr(0,i)) && dict.count(str.substr(i)))
+            {
+                cout << str << endl;
+                break;
+            }    
         }
-
-        sort(sa.begin(),sa.end());
-        sort(sb.begin(),sb.end());
-
-        if(sa == sb)
-            cout << "YES\n";
-        else
-            cout << "NO\n";
     }
     return 0;
 }
