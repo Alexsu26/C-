@@ -111,3 +111,42 @@ Discarded cards: 1, 3, 5, 7, 4, 2
     string str1 = str.substr(0,2);  //两个参数，则是[0,2),即str1 = "he"
     string str2 = str.substr(2);    //一个参数，即是(2:],即str2 = "llo"
     ```
+
+*   对于`sort`函数，有两个重载，一个仅有两个参数，即排序的起始位置，例如
+    ```C++
+    int x[5] = {5,4,3,2,1};
+    sort(x,x+5);
+    //此时数组x为{1,2,3,4,5}
+    ```
+    而三个参数的形式，可以指定排序方式，例如
+    ```C++
+    bool cmp(int x,int y)
+    {
+        return x > y;
+    }
+    int x[5] = {1,2,3,4,5};
+    sort(x,x+5,cmp);
+    //此时数组x为{5，4，3，2，1}
+    ```
+    当然对于习题5-6所构造的结构体
+    ```C++
+    struct dot{
+        int x;
+        int y;
+    };
+    ```
+    而言，可以通过重载`<`运算符进行排序：
+    ```C++
+    struct dot
+    {
+        int x;
+        int y;
+        bool operator < (const dot& b) const {
+            if(x == b.x)
+                return y < b.y;
+            else
+                return x < b.x;
+        }
+    };
+    sort(dot x,dot x+size);//可直接调用sort
+    ```
