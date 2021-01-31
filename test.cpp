@@ -1,28 +1,46 @@
-#include <iostream>
-#include <string>
-#include <set>
+#include <bits./stdc++.h>
 using namespace std;
 
+const int maxn = 10000;
+int dots[2*maxn][2*maxn];
 int main()
 {
-    freopen("test.in","r",stdin);
-    freopen("test.out","w",stdout);
-    set<string>dict;
-    string s;
-    while(cin >> s)
+    int n;
+    cin >> n;
+    while(n--)
     {
-        dict.insert(s);
-    }
-    for(set<string>::iterator it = dict.begin(); it != dict.end(); it++)
-    {
-        string str = *it;
-        for(int i=1; i != str.size(); i++)
+        for(int i=0; i<2*maxn; i++)
+            for(int j=0; j<2*maxn; j++)
+                dots[i][j] = 0;
+        int num;
+        cin >> num;
+        int minx=maxn,miny=maxn,maxx=0,maxy=0;
+        while(num--)
         {
-            if( dict.count(str.substr(0,i)) && dict.count(str.substr(i)))
+            int x,y;
+            cin >> x >> y;
+            dots[x+maxn][y+maxn] = 1;
+            minx = min(minx,x);
+            maxx = max(maxx,x);
+            miny = min(miny,y);
+            maxy = max(maxy,y);
+        }
+        for(int i=minx-1; i<maxx+1; i++)
+        {
+            vector<int>lines;
+            for(int j=miny-1; j<maxy+1; j++)
             {
-                cout << str << endl;
-                break;
-            }    
+                if(dots[i][j] == 1)
+                    lines.push_back(dots[i][j]);
+            }
+            if(lines.size() % 2 == 0)
+            {
+
+            }
+            else
+            {
+                
+            }
         }
     }
     return 0;
