@@ -150,3 +150,5 @@ Discarded cards: 1, 3, 5, 7, 4, 2
     };
     sort(dot x,dot x+size);//可直接调用sort
     ```
+
+*   udebug网站对于uva的检索规则不明，应先选择uva online judge，再直接输入题号进行检索而不是再输入uva+题号

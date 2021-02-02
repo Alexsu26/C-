@@ -1,2 +1,1 @@
-freopen("test.in","r",stdin);
-    
+sys[i].borrowed = false;
