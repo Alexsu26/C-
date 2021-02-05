@@ -13,8 +13,8 @@ stack<Matrix> s;
 
 int main()
 {
-    freopen("test.in","r",stdin);
-    freopen("test.out","w",stdout);
+    // freopen("test.in", "r", stdin);
+    // freopen("test.out", "w", stdout);
     int n;
     cin >> n;
     for (int i = 0; i < n; i++)
@@ -48,7 +48,7 @@ int main()
                     break;
                 }
                 ans += m1.row * m1.col * m2.col;
-                s.push(Matrix(m1.row,m2.col));
+                s.push(Matrix(m1.row, m2.col));
             }
         }
         if (error)
