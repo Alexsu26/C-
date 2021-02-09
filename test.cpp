@@ -1,96 +1,32 @@
 #include <cstdio>
-#include <algorithm>
 using namespace std;
-
-const int maxn = 100000 + 10;
-int _left_[maxn],_right_[maxn];
-
-void link(int l, int r)
-{
-    _right_[l] = r;
-    _left_[r] = l;
-}
-
 int main()
 {
     freopen("test.in","r",stdin);
     freopen("test.out","w",stdout);
-    int n,m;
-    int kase = 0;
-    while(scanf("%d%d",&n,&m) == 2)
+    int D, I;
+    int n;
+    scanf("%d",&n);
+    while(n--)
     {
-        for(int i=1; i<=n; i++)
+        while (scanf("%d%d", &D, &I) == 2)
         {
-            _left_[i] = i-1;
-            _right_[i] = (i+1) % (n+1);
-        }
-        _left_[0] = n;
-        _right_[0] = 1;
-
-        int op;
-        bool inv = false;
-        int X,Y;
-        while(m--)
-        {
-            scanf("%d",&op);
-            if(op == 4)
-                inv = !inv;
-            else
+            int k = 1;
+            for (int i = 0; i < D - 1; i++)
             {
-                scanf("%d%d", &X, &Y);
-                if (inv && op != 3)
-                    op = 3 - op;
-                if(op == 3 && _right_[Y] == X)
-                    swap(X,Y);//
-                if(op == 1 && X == _left_[Y])
-                    continue;
-                if(op == 2 && X == _right_[Y])
-                    continue;
-
-                int LX = _left_[X], RX = _right_[X];
-                int LY = _left_[Y], RY = _right_[Y];
-                if (op == 1)
+                if (I % 2)
                 {
-                    link(LX, RX);
-                    link(LY, X);
-                    link(X, Y);
+                    k = 2 * k;
+                    I = (I + 1) / 2;
                 }
-                else if (op == 2)
+                else
                 {
-                    link(LX, RX);
-                    link(Y, X);
-                    link(X, RY);
+                    k = 2 * k + 1;
+                    I = I / 2;
                 }
-                else if (op == 3)
-                {
-                    if (_right_[X] != Y)
-                    {
-                        link(LX, Y);
-                        link(Y, RX);
-                        link(LY, X);
-                        link(X, RY);
-                    }
-                    else
-                    {
-                        link(LX, Y);
-                        link(Y, X);
-                        link(X, RY);
-                    }
-                }     
-            }     
+            }
+            printf("%d\n", k);
         }
-
-        int x = 0;
-        long long ans = 0;
-        for(int i=1; i<=n; i++)
-        {
-            x = _right_[x];
-            if(i % 2 == 1)
-                ans += x;
-        }
-        if(inv && n % 2 == 0)
-            ans = (long long)n*(n+1)/2 - ans;
-        printf("Case %d: %lld\n",++kase, ans);
     }
     return 0;
 }
