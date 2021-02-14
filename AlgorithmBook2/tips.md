@@ -1,6 +1,6 @@
 # tips
 
-### C
+>   用于存放《算法竞赛入门经典》第二版书中所作习题时的感悟，也有相当一部分的解题技巧和C、C++语言的语法知识
 
 *   ##### 可引用`time.h`和`(double)clock()/CLOCKS_PER_SEC`返回程序所运行的时间，但需要在命令行运行`echo 值 | 程序名`,若在VScode的终端中运行`echo 值 | .\程序名`才能运行
 
@@ -152,3 +152,21 @@ Discarded cards: 1, 3, 5, 7, 4, 2
     ```
 
 *   udebug网站对于uva的检索规则不明，应先选择uva online judge，再直接输入题号进行检索而不是再输入uva+题号
+
+*   对于bool类型的函数，在vscode中进行编译，即使不包括返回值，也会自动返回1，例如例题6-10中的函数：
+    ```C++
+    bool init()
+    {
+        memset(sum,0,sizeof(sum));
+        int v;
+        cin >> v;
+        if(v == -1)
+            return false;
+        int root = maxv/2;
+        sum[root] = v;
+        build_substree(root-1);
+        build_substree(root+1);
+        // return true;  OJ中这条语句不可少
+    }
+    ```
+    在编译器中结尾自动添加`return true`语句，使得调用`while(init())`的循环语句得以继续，但是在OJ中，没有返回值的函数是不允许的，至少bool函数不允许没有返回值；

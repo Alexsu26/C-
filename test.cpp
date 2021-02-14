@@ -1,67 +1,50 @@
 #include <iostream>
-#include <string>
-#include <sstream>
-#include <algorithm>
+#include <cstring>
 using namespace std;
 
-const int maxv = 10000 + 10;
-int in_order[maxv], post_order[maxv], lch[maxv], rch[maxv];
-int n;
+const int maxv = 100;
+int sum[maxv];
 
-bool read_input(int *a)
+void build_substree(int root)
 {
-    string line;
-    if(!getline(cin,line))
+    int v;
+    cin >> v;
+    if(v == -1)
+        return;
+    sum[root] += v;
+    build_substree(root-1);
+    build_substree(root+1);
+}
+
+bool init()
+{
+    memset(sum,0,sizeof(sum));
+    int v;
+    cin >> v;
+    if(v == -1)
         return false;
-    stringstream ss(line);
-    n = 0;
-    int x;
-    while(ss >> x)
-        a[n++] = x;
-    return true;
-}
-
-int build_tree(int L1,int R1, int L2, int R2)
-{
-    if(L1 > R1)
-        return 0;
-    int root = post_order[R2];
-    int p = 0;
-    while(in_order[p] != root)
-        p++;
-    int cnt = p - L1;
-    lch[root] = build_tree(L1,p-1,L2,L2+cnt-1);
-    rch[root] = build_tree(p+1,R1,L2+cnt,R2-1);
-    return root;
-}
-
-int best,best_sum;
-void bfs(int root, int sum)
-{
-    sum += root;
-    if(!lch[root] && !rch[root])
-        if(sum < best_sum || (sum == best_sum && root < best))
-        {
-            best = root;
-            best_sum = sum;
-        }
-    if(lch[root])
-        bfs(lch[root],sum);
-    if(rch[root])
-        bfs(rch[root],sum);
+    int root = maxv/2;
+    sum[root] = v;
+    build_substree(root-1);
+    build_substree(root+1);
+    return true;            //bool函数的返回值
 }
 
 int main()
 {
     freopen("test.in","r",stdin);
     freopen("test.out","w",stdout);
-    while(read_input(in_order))
+    int kase = 0;
+    while(init())
     {
-        read_input(post_order);
-        build_tree(0,n-1,0,n-1);
-        best_sum = 100000;
-        bfs(post_order[n-1],0);
-        printf("%d\n",best);
+        int p = 0;
+        while(sum[p] == 0)
+            p++;
+        cout << "Case " << ++kase << ":\n" 
+        << sum[p++];        //sum[p++]让p继续向后移动
+        while(sum[p] != 0)
+            cout << " " << sum[p++];
+        cout << "\n\n";
     }
     return 0;
 }
