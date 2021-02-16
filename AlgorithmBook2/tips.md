@@ -176,3 +176,5 @@ Discarded cards: 1, 3, 5, 7, 4, 2
     在编译器中结尾自动添加`return true`语句，使得调用`while(init())`的循环语句得以继续，但是在OJ中，没有返回值的函数是不允许的，至少bool函数不允许没有返回值；
 
 *   在C语言中，存在有`index`函数，参数为：`index(const char* s , char ch)`，用于返回字符串s中第一次出现字符ch的指针；但在vscode中编译，会将用户定义的`index`函数顶替掉预定义的函数，但是在OJ上并不会，因此最好不要自定义同名函数，即使可以重载，可将`index`改为`idx`；
+
+*   2021.02.16  由于进入6.4 图 部分，但基础知识与章节要求相差较大，暂停./AlgorithmBook2/数据结构基础 相关章节的学习，原有的计划暂且搁置，由[OI-wiki](https://oi-wiki.org/basic/) 以及 [MOOC](https://www.icourse163.org/learn/ZJU-93001?tid=1461682474#/learn/content) 上的数据结构和算法基础部分代替，时间暂定为10天；
