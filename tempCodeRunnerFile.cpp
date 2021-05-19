@@ -1,2 +1,3 @@
-// for(int i=1; i<=num; i++)
-            //     scanf("%d",&b[i])
+head = Insert(head,4);
+    // head = Insert(head,5);
+    

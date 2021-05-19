@@ -1,45 +1,68 @@
-#include <iostream>
-#include <cstring>
-using namespace std;
+//Print linked list using recursion
+#include <stdio.h>
+#include <stdlib.h>
 
-const int maxn = 100 + 10;
-char oil[maxn][maxn];
-int idx[maxn][maxn], cnt;
-int m, n;
-
-void bfs(int r, int c, int id)
+struct Node
 {
-    if (r < 0 || r >= m || c < 0 || c >= n)
+    int data;
+    struct Node* next;
+};
+
+struct Node* head;
+
+void Reverse(struct Node* head)
+{
+    // if(head->next != NULL)
+    //     Reverse(head->next);
+    // printf("%d ",head->data);
+    if(head == NULL)
+    {
+        // printf("\n");
         return;
-    if (idx[r][c] != 0 || oil[r][c] != '@')
+    }
+    Reverse(head->next);
+    printf("%d ",head->data);
+}
+
+struct Node* Insert(struct Node* head, int data)
+{
+    Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    temp->data = data;
+    temp->next = NULL;
+    if(head == NULL)
+        head = temp;
+    else
+    {
+        Node* temp2 = head;
+        while(temp2->next != NULL)
+            temp2 = temp2->next;
+        temp2->next = temp;
+    }
+    return head;
+    
+}
+
+void Print(struct Node* head)
+{
+    if(head == NULL)
+    {
+        printf("\n");
         return;
-    idx[r][c] = id;
-    for (int i = -1; i < 2; i++)
-        for (int j = -1; j < 2; j++)
-            if (i != 0 || j != 0)
-                bfs(r + i, c + j, id);
+    }
+    printf("%d ",head->data);
+    Print(head->next);
 }
 
 int main()
 {
-    freopen("test.in", "r", stdin);
-    freopen("test.out", "w", stdout);
-    while (cin >> m >> n && m && n)
-    {
-        for (int i = 0; i < m; i++)
-            cin >> oil[i];
-
-        memset(idx, 0, sizeof(idx));
-        int cnt = 0;
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                if (oil[i][j] == '@' && idx[i][j] == 0)
-                    bfs(i, j, ++cnt);
-            }
-        }
-        cout << cnt << endl;
-    }
+    struct Node* head = NULL;
+    head = Insert(head,2);
+    head = Insert(head,4);
+    head = Insert(head,5);
+    head = Insert(head,7);
+    Print(head);
+    
+    Reverse(head); 
     return 0;
+
 }
