@@ -1,4 +1,4 @@
-//Print linked list using recursion
+//doubly linked list
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,63 +6,72 @@ struct Node
 {
     int data;
     struct Node* next;
+    struct Node* prev;
 };
 
 struct Node* head;
 
-void Reverse(struct Node* head)
+struct Node* GetNewNode(int num)
 {
-    // if(head->next != NULL)
-    //     Reverse(head->next);
-    // printf("%d ",head->data);
-    if(head == NULL)
-    {
-        // printf("\n");
-        return;
-    }
-    Reverse(head->next);
-    printf("%d ",head->data);
+    struct Node* NewNode = (struct Node*)malloc(sizeof(struct Node));
+    NewNode->data = num;
+    NewNode->next = NULL;
+    NewNode->prev = NULL;
+    return NewNode;
 }
 
-struct Node* Insert(struct Node* head, int data)
+void InsertAtHead(int x)
 {
-    Node* temp = (struct Node*)malloc(sizeof(struct Node));
-    temp->data = data;
-    temp->next = NULL;
+    struct Node* temp = GetNewNode(x);
     if(head == NULL)
-        head = temp;
-    else
-    {
-        Node* temp2 = head;
-        while(temp2->next != NULL)
-            temp2 = temp2->next;
-        temp2->next = temp;
-    }
-    return head;
-    
+    {head = temp; return;}
+    head->prev = temp;
+    temp->next = head;
+    head = temp;
 }
 
-void Print(struct Node* head)
+void InsertAtTail(int x)
 {
-    if(head == NULL)
+    struct Node* temp = GetNewNode(x);
+    struct Node* last = head;
+    while(last->next != NULL)
+        last = last->next;
+    last->next = temp;
+    temp->prev = last;
+}
+
+void Print()
+{
+    struct Node* temp = head;
+    printf("Normal: ");
+    while(temp != NULL)
     {
-        printf("\n");
-        return;
+        printf("%d ",temp->data);
+        temp = temp->next;
     }
-    printf("%d ",head->data);
-    Print(head->next);
+    printf("\n");
+}
+
+void ReversePrint()
+{
+    struct Node* temp = head;
+    while(temp->next != NULL)
+        temp = temp->next;
+    printf("Reverse: ");
+    while (temp != NULL)
+    {
+        printf("%d ",temp->data);
+        temp = temp->prev;
+    }
+    printf("\n");
 }
 
 int main()
 {
-    struct Node* head = NULL;
-    head = Insert(head,2);
-    head = Insert(head,4);
-    head = Insert(head,5);
-    head = Insert(head,7);
-    Print(head);
-    
-    Reverse(head); 
-    return 0;
+    head = NULL;
+    InsertAtHead(2); Print(); ReversePrint();
+    InsertAtTail(4); Print(); ReversePrint();
+    InsertAtHead(6); Print(); ReversePrint();
 
+    return 0;
 }
