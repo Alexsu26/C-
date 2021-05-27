@@ -1,3 +1,1 @@
-head = Insert(head,4);
-    // head = Insert(head,5);
-    
+  printf("top = %d\n" ,Top());

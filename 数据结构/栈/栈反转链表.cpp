@@ -3,34 +3,36 @@
 #include <stack>
 using namespace std;
 
-struct Node{
+struct Node
+{
     int data;
-    struct Node* next;
+    struct Node *next;
 };
-struct Node* head;
+struct Node *head;
 
-void listpush(int x){
-    struct Node* temp = (struct Node*)malloc(sizeof(Node));
+void listpush(int x)
+{
+    struct Node *temp = (struct Node *)malloc(sizeof(Node));
     temp->data = x;
     temp->next = NULL;
-    if(head == NULL)
+    if (head == NULL)
     {
         head = temp;
         return;
     }
-    struct Node* temp2 = head;
-    while(temp2->next != NULL)
+    struct Node *temp2 = head;
+    while (temp2->next != NULL)
         temp2 = temp2->next;
     temp2->next = temp;
 }
 
 void Print()
 {
-    struct Node* temp = head;
+    struct Node *temp = head;
     printf("linked list: ");
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        printf("%d ",temp->data);
+        printf("%d ", temp->data);
         temp = temp->next;
     }
     printf("\n");
@@ -38,18 +40,19 @@ void Print()
 
 void Reverse()
 {
-    if(head == NULL)
+    if (head == NULL)
         return;
-    stack<struct Node*> s;
-    struct Node* temp = head;
-    while(temp != NULL)
+    stack<struct Node *> s;
+    struct Node *temp = head;
+    while (temp != NULL)
     {
         s.push(temp);
         temp = temp->next;
     }
-    temp = s.top(); s.pop();
+    temp = s.top();
+    s.pop();
     head = temp;
-    while(!s.empty())
+    while (!s.empty())
     {
         temp->next = s.top();
         s.pop();
