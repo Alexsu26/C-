@@ -5,19 +5,19 @@ bool CheckBalancedParentheses(string str)
 {
     int n = str.length();
     stack<char> s;
-    for(int i=0; i<n ; i++)
+    for (int i = 0; i < n; i++)
     {
-        if(str[i] == '(')
+        if (str[i] == '(')
             s.push(str[i]);
         else
         {
-            if(s.empty() || s.top() != '(' )
+            if (s.empty() || s.top() != '(')
                 return false;
-            else 
+            else
                 s.pop();
         }
     }
-    return s.empty()? true : false;
+    return s.empty() ? true : false;
 }
 
 int main()
@@ -25,9 +25,8 @@ int main()
     string str;
     cout << "input str : ";
     cin >> str;
-    if(CheckBalancedParentheses(str))
-        cout << "Yes!\n" ;
+    if (CheckBalancedParentheses(str))
+        cout << "Yes!\n";
     else
-        cout << "N0!\n" ;
-        
+        cout << "N0!\n";
 }
