@@ -1,33 +1,43 @@
-#include <cstdio>
-#include <vector>
-
+#include <iostream>
 using namespace std;
 
-int n;
+const int N = 100010;
+int n, m;
+int sq[N];
 
-vector<int> chosed;
-
-void calc(int x){
-    if( x == n+1 ){
-        for( int i=0; i<chosed.size(); i++ ){
-            printf("%d ", chosed[i]);
-        }
-        printf("\n");
-        return;
-    }
-    //not chosed
-    calc(x+1);
-
-    //chosed
-    chosed.push_back(x);
-    calc(x+1);
-
-    chosed.pop_back();
-}
-
-int main(int argc, char const *argv[])
+int main()
 {
-    scanf("%d",&n);
-    calc(1);
-    return 0;
+    scanf("%d%d", &n, &m);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &sq[i]);
+    while (m--)
+    {
+        int x;
+        scanf("%d", &x);
+        int l = 0, r = n - 1;
+        while (l < r)
+        {
+            int mid = (l + r ) / 2;
+            if (sq[mid] >= x)
+                r = mid;
+            else
+                l = mid + 1;
+        }
+        if (sq[l] != x)
+            cout << "-1 -1" << endl;
+        else
+        {
+            cout << l << " ";
+            int l = 0, r = n - 1;
+            while (l < r)
+            {
+                int mid = (l + r + 1) / 2;
+                if (sq[mid] <= x)
+                    l = mid;
+                else
+                    r = mid - 1;
+            }
+            cout << l << endl;
+        }
+    }
 }
